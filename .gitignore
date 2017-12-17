@@ -1,8 +1,6 @@
-/target
+target
+.idea
 .DS_Store
-.settings
-.project
-.classpath
 *.jar
 pkg/TProfiler/COPYING.txt
 pkg/TProfiler/README
