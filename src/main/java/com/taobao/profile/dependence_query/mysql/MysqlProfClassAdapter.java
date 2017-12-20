@@ -57,9 +57,9 @@ public class MysqlProfClassAdapter extends IClassAdapter {
 				mv.visitTypeInsn(Opcodes.NEW, "java/lang/String");
 				mv.visitInsn(Opcodes.DUP);
 				mv.visitVarInsn(Opcodes.ALOAD, 4);
-				mv.visitMethodInsn(Opcodes.INVOKEVIRTUAL, "com/mysql/jdbc/Buffer", "getByteBuffer", "()[B");
+				mv.visitMethodInsn(Opcodes.INVOKEVIRTUAL, "com/mysql/jdbc/Buffer", "getByteBuffer", "()[B", false);
 				mv.visitLdcInsn("utf-8");
-				mv.visitMethodInsn(Opcodes.INVOKESPECIAL, "java/lang/String", "<init>", "([BLjava/lang/String;)V");
+				mv.visitMethodInsn(Opcodes.INVOKESPECIAL, "java/lang/String", "<init>", "([BLjava/lang/String;)V", false);
 				mv.visitVarInsn(Opcodes.ASTORE, 30);
 
 				mv.visitLabel(endIf);
@@ -75,7 +75,7 @@ public class MysqlProfClassAdapter extends IClassAdapter {
 
 				mv.visitVarInsn(Opcodes.ALOAD, 30);
 
-				mv.visitMethodInsn(Opcodes.INVOKESTATIC, "com/taobao/profile/Profiler", "start4Mysql", "(Ljava/lang/String;ILjava/lang/String;Ljava/lang/String;)V");
+				mv.visitMethodInsn(Opcodes.INVOKESTATIC, "com/taobao/profile/Profiler", "start4Mysql", "(Ljava/lang/String;ILjava/lang/String;Ljava/lang/String;)V", false);
 				mv.visitCode();
 			}
 
@@ -99,7 +99,7 @@ public class MysqlProfClassAdapter extends IClassAdapter {
 			case Opcodes.LRETURN:
 			case Opcodes.RETURN:
 			case Opcodes.ATHROW:
-				mv.visitMethodInsn(Opcodes.INVOKESTATIC, "com/taobao/profile/Profiler", "end4Mysql", "()V");
+				mv.visitMethodInsn(Opcodes.INVOKESTATIC, "com/taobao/profile/Profiler", "end4Mysql", "()V", false);
 				break;
 			default:
 				break;
