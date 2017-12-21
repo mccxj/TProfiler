@@ -1,13 +1,12 @@
 package com.taobao.profile.test;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Properties;
-
+import com.taobao.profile.config.ConfigureProperties;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.taobao.profile.config.ConfigureProperties;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
 
 public class ConfigurePropertiesTest {
   
