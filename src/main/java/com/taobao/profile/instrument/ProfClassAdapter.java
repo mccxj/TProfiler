@@ -65,14 +65,15 @@ public class ProfClassAdapter extends ClassVisitor {
      * @see org.objectweb.asm.ClassAdapter#visitField(int, java.lang.String, java.lang.String, java.lang.String, java.lang.Object)
      */
     public FieldVisitor visitField(int access, String name, String desc, String signature, Object value) {
-        String up = name.substring(0, 1).toUpperCase() + name.substring(1, name.length());
-        String getFieldName = "get" + up;
-        String setFieldName = "set" + up;
-        String isFieldName = "is" + up;
-        fieldNameList.add(getFieldName);
-        fieldNameList.add(setFieldName);
-        fieldNameList.add(isFieldName);
-
+        if (Manager.isIgnoreGetSetMethod()) {
+            String up = name.substring(0, 1).toUpperCase() + name.substring(1, name.length());
+            String getFieldName = "get" + up;
+            String setFieldName = "set" + up;
+            String isFieldName = "is" + up;
+            fieldNameList.add(getFieldName);
+            fieldNameList.add(setFieldName);
+            fieldNameList.add(isFieldName);
+        }
         return super.visitField(access, name, desc, signature, value);
     }
 
