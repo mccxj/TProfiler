@@ -31,6 +31,7 @@ public class ProfTransformer implements ClassFileTransformer {
 
     /**
      * 尝试对Mysql的包拦截
+     *
      * @param loader
      * @param className
      * @param classBeingRedefined
@@ -70,6 +71,10 @@ public class ProfTransformer implements ClassFileTransformer {
      */
     public byte[] transform(ClassLoader loader, String className, Class<?> classBeingRedefined,
                             ProtectionDomain protectionDomain, byte[] classfileBuffer) throws IllegalClassFormatException {
+        // Java 8's resolution of lambda call can result in synthetic classes with no name.
+        if (className == null) {
+            return null;
+        }
         if (loader != null && ProfFilter.isNotNeedInjectClassLoader(loader.getClass().getName())) {
             return classfileBuffer;
         }
